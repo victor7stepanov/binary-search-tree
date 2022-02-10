@@ -1,33 +1,28 @@
-import './App.css';
 import {useEffect, useState} from "react";
+import {Circle} from "./components/Circle/Circle";
+import getRandomIntInclusive from "./helper-functions/random";
 
-export default function App(props) {
-  const [circle, setCircle] = useState(null);
+export default function App() {
+  const [circleValue, setCircleValue] = useState(null);
 
-  const circleTemplate = (
-      <div className={'circle'}>
-          <div className={'circle__value'}>
-              {props.value}
-          </div>
-      </div>
-  )
-
-  const handleSpace = (event) => {
+  const spaceHandler = (event) => {
       if (event.code === 'Space') {
-          setCircle(circleTemplate);
+          setCircleValue(getRandomIntInclusive(-100, 100));
       }
   }
 
   useEffect(() => {
-      document.addEventListener('keydown', handleSpace);
-      console.log('effect')
+      document.addEventListener('keydown', spaceHandler);
       return () => {
-          document.removeEventListener('keydown', handleSpace)
+          document.removeEventListener('keydown', spaceHandler)
       }
   }, [])
 
   return (
-      circle
+      circleValue ? <Circle value={circleValue} />
+                  : <div style={{textAlign: 'center'}}>
+                        Press Space
+                    </div>
   );
 }
 
