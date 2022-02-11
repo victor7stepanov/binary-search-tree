@@ -15,4 +15,5 @@
     position: absolute;
     display: block;
     left: 25px;
+    cursor: text;
 }

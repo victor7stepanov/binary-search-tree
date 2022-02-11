@@ -19,10 +19,11 @@ export default function App() {
   }, [])
 
   return (
-      circleValue ? <Circle value={circleValue} />
-                  : <div style={{textAlign: 'center'}}>
-                        Press Space
-                    </div>
+      circleValue
+          ? <Circle value={circleValue} />
+          : <div style={{textAlign: 'center'}}>
+              Press Space
+            </div>
   );
 }
 
